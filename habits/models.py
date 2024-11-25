@@ -1,6 +1,7 @@
 from django.db import models
 
-from config.settings import NULLABLE, AUTH_USER_MODEL
+from config.settings import NULLABLE
+from users.models import User
 
 
 class Habit(models.Model):
@@ -16,8 +17,10 @@ class Habit(models.Model):
         ("every weak", "раз в неделю")
     ]
     owner = models.ForeignKey(
-        AUTH_USER_MODEL,
+        User,
         on_delete=models.CASCADE,
+        verbose_name="Владелец",
+        **NULLABLE
     )
     place = models.CharField(
         max_length=100,
