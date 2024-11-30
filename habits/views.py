@@ -9,7 +9,9 @@ from users.permissions import IsOwner
 
 
 class HabitViewSet(ModelViewSet):
-    """CRUD для привычек"""
+    """
+    CRUD привычек
+    """
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
     permission_classes = (IsAuthenticated,)

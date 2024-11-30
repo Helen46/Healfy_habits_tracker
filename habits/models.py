@@ -5,7 +5,9 @@ from users.models import User
 
 
 class Habit(models.Model):
-    """Модель привычки"""
+    """
+    Модель привычки
+    """
 
     RHYTHM_CHOICES = [
         ("every day", "каждый день"),
