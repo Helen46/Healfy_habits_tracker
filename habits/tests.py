@@ -76,18 +76,17 @@ class HabitTestCase(APITestCase):
     #         data.get("action"), "Test1"
     #     )
 
-    # def test_habit_delete(self):cl
-    #     """
-    #     Тестирование удаления привычки
-    #     :return:
-    #     """
-    #     url = reverse("habits:habit-detail", args=(self.habit.pk,))
-    #     response = self.client.delete(url)
-    #     print(response.json())
-    #
-    #     self.assertEqual(
-    #         response.status_code, status.HTTP_204_NO_CONTENT
-    #     )
-    #     self.assertEqual(
-    #         Habit.objects.all().count(), 1
-    #     )
+    def test_habit_delete(self):
+        """
+        Тестирование удаления привычки
+        :return:
+        """
+        url = reverse("habits:habit-detail", args=(self.habit.pk,))
+        response = self.client.delete(url)
+
+        self.assertEqual(
+            response.status_code, status.HTTP_204_NO_CONTENT
+        )
+        self.assertEqual(
+            Habit.objects.all().count(), 0
+        )

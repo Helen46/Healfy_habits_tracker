@@ -17,13 +17,16 @@ class HabitViewSet(ModelViewSet):
     permission_classes = (IsAuthenticated,)
     pagination_class = HabitsPagination
 
+    def get_queryset(self):
+        return Habit.objects.filter(owner=self.request.user)
+
     def perform_create(self, serializer):
        habit = serializer.save(owner=self.request.user)
        habit.save()
 
     def get_permissions(self):
        if self.action != "create":
-           self.permission_classes = (IsAuthenticated, IsOwner)
+           self.permission_classes = [IsOwner]
        return super().get_permissions()
 
 

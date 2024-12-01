@@ -32,7 +32,8 @@ class Habit(models.Model):
     )
     start_time = models.DateTimeField(
         verbose_name="Время начала выполнения привычки",
-        help_text="Выберете дату и время начала привычки"
+        help_text="Выберете дату и время начала привычки",
+        **NULLABLE
     )
     action = models.CharField(
         max_length=300,
