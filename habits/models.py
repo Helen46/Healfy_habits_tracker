@@ -65,6 +65,7 @@ class Habit(models.Model):
         **NULLABLE,
     )
     lead_time = models.IntegerField(
+        default=1,
         verbose_name="Время выполнения",
         help_text="Укажите предположительное время выполнения привычки в минутах",
     )

@@ -28,6 +28,9 @@ class CheckLeadTimeValidator:
     def __call__(self, value):
         lead_time = dict(value).get(self.field)
 
+        if not lead_time:
+            return
+
         if int(lead_time) > 120:
             raise ValidationError("Время выполнения должно быть не больше 120 минут")
 
@@ -41,6 +44,9 @@ class RelatedHabitNotPleasantValidator:
 
     def __call__(self, value):
         related_habit = dict(value).get(self.field_1)
+
+        if not related_habit:
+            return
 
         if not related_habit.is_pleasant:
             raise ValidationError("Связанная привычка должна быть приятной")
@@ -58,7 +64,7 @@ class IsPleasantNotRelatedHabitOrRewordValidator:
     def __call__(self, value):
         is_pleasant = dict(value).get(self.field_1)
         related_habit = dict(value).get(self.field_2)
-        reward = dict(value).get(self.field_2)
+        reward = dict(value).get(self.field_3)
 
         if (is_pleasant and related_habit) or (is_pleasant and reward):
             raise ValidationError("У приятной привычки не может быть связанной привычки или вознаграждения")
