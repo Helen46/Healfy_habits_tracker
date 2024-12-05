@@ -8,3 +8,5 @@ celery==5.4.0
 django-celery-beat==2.7.0
 redis==5.2.0
 coverage==7.6.8
+requests==2.32.3
+drf-yasg==1.21.8

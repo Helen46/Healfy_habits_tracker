@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'django_celery_beat',
+    'drf_yasg',
 
     'habits',
     'users',
@@ -127,5 +128,14 @@ CELERY_TASK_SERIALIZER = 'pickle'
 CELERY_RESULT_SERIALIZER = 'pickle'
 
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+CELERY_BEAT_SCHEDULE = {
+    'task-name': {
+        'task': 'habits.tasks.send_info_obout_start_habit',
+        'schedule': timedelta(minutes=1),
+    },
+}
+
+TELEGRAM_URL = "https://api_telegram.org/bot"
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 
 NULLABLE = {'blank': True, 'null': True}
