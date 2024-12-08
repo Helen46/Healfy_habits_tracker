@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'django_celery_beat',
     'drf_yasg',
+    'corsheaders',
 
     'habits',
     'users',
@@ -38,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -130,12 +132,21 @@ CELERY_RESULT_SERIALIZER = 'pickle'
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
-        'task': 'habits.tasks.send_info_obout_start_habit',
+        'task': 'habits.tasks.check_habits',
         'schedule': timedelta(minutes=1),
     },
 }
 
 TELEGRAM_URL = "https://api_telegram.org/bot"
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+
+CORS_ALLOWED_ORIGINS = [
+    "https://read-only.example.com",
+    "https://read-and-write.example.com",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://read-and-write.example.com",
+]
 
 NULLABLE = {'blank': True, 'null': True}

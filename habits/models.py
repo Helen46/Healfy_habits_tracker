@@ -57,6 +57,7 @@ class Habit(models.Model):
         choices=RHYTHM_CHOICES,
         verbose_name="Переодичность выполнения",
         help_text="Выберите переодичностьт выполнения привычки",
+        default="every day",
     )
     reward = models.CharField(
         max_length=300,
