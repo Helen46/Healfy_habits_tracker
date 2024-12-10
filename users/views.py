@@ -9,7 +9,7 @@ class UserCreateAPIView(CreateAPIView):
     """Создание польователя"""
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    pagination_class = (AllowAny,)
+    permission_class = (AllowAny,)
 
     def perform_create(self, serializer):
         user = serializer.save(is_active=True)
